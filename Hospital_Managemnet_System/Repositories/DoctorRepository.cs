@@ -11,11 +11,13 @@ namespace Hospital_Management_Web_Api.Repositories
     {
         private readonly DatabaseHelper _dbHelper;
 
+        // DoctorRepository constructor
         public DoctorRepository(DatabaseHelper dbHelper)
         {
             _dbHelper = dbHelper;
         }
 
+        // AddDoctorAsync repository method
         public async Task AddDoctorAsync(CreateDoctorDto dto)
         {
             using SqlConnection con = _dbHelper.GetConnection();
@@ -41,7 +43,7 @@ namespace Hospital_Management_Web_Api.Repositories
         }
 
 
-        // mapping loop
+        // MapDoctor helper method
         private Doctor MapDoctor(SqlDataReader reader)
         {
             return new Doctor
@@ -62,6 +64,7 @@ namespace Hospital_Management_Web_Api.Repositories
             };
         }
 
+        // GetDoctorsAsync repository method
         public async Task<List<Doctor>> GetDoctorsAsync()
         {
             List<Doctor> doctors = new();
@@ -87,6 +90,7 @@ namespace Hospital_Management_Web_Api.Repositories
             return doctors;
         }
 
+        // GetDoctorsBySpecializationAsync repository method
         public async Task<List<Doctor>> GetDoctorsBySpecializationAsync(
             string specialization)
         {

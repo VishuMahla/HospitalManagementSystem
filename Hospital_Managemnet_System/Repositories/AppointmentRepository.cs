@@ -11,11 +11,13 @@ namespace Hospital_Management_Web_Api.Repositories
     {
         private readonly DatabaseHelper _dbHelper;
 
+        // AppointmentRepository constructor
         public AppointmentRepository(DatabaseHelper dbHelper)
         {
             _dbHelper = dbHelper;
         }
 
+        // BookAppointmentAsync repository method
         public async Task BookAppointmentAsync(BookAppointmentDto dto)
         {
             using SqlConnection con = _dbHelper.GetConnection();
@@ -32,6 +34,7 @@ namespace Hospital_Management_Web_Api.Repositories
             await cmd.ExecuteNonQueryAsync();
         }
 
+        // CancelAppointmentAsync repository method
         public async Task CancelAppointmentAsync(int appointmentId)
         {
             using SqlConnection con = _dbHelper.GetConnection();
@@ -45,6 +48,7 @@ namespace Hospital_Management_Web_Api.Repositories
             await cmd.ExecuteNonQueryAsync();
         }
 
+        // GetUpcomingAppointmentsAsync repository method
         public async Task<List<Appointment>> GetUpcomingAppointmentsAsync()
         {
             List<Appointment> appointments = new();
@@ -69,6 +73,7 @@ namespace Hospital_Management_Web_Api.Repositories
             return appointments;
         }
 
+        // GetDoctorAppointmentsAsync repository method
         public async Task<List<Appointment>> GetDoctorAppointmentsAsync(int doctorCode)
         {
             List<Appointment> appointments = new();
@@ -94,6 +99,7 @@ namespace Hospital_Management_Web_Api.Repositories
             return appointments;
         }
 
+        // GetPatientAppointmentsAsync repository method
         public async Task<List<Appointment>> GetPatientAppointmentsAsync(int patientCode)
         {
             List<Appointment> appointments = new();

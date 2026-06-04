@@ -12,12 +12,15 @@ namespace Hospital_Management_Web_Api.Controllers
 
         private readonly IAppointmentService _service;
 
+        // AppointmentController constructor
         public AppointmentController(IAppointmentService service)
         {
             _service = service;
         }
 
+
         [HttpPost("book")]
+        // BookAppointment method
         public async Task<IActionResult> BookAppointment(BookAppointmentDto dto)
         {
             await _service.BookAppointmentAsync(dto);
@@ -25,6 +28,7 @@ namespace Hospital_Management_Web_Api.Controllers
         }
 
         [HttpDelete("cancel/{id}")]
+        // CancelAppointment method
         public async Task<IActionResult> CancelAppointment(int id)
         {
             await _service.CancelAppointmentAsync(id);
@@ -32,6 +36,7 @@ namespace Hospital_Management_Web_Api.Controllers
         }
 
         [HttpGet("upcoming")]
+        // GetUpcoming method
         public async Task<IActionResult> GetUpcoming()
         {
             var data = await _service.GetUpcomingAppointmentsAsync();
@@ -39,6 +44,7 @@ namespace Hospital_Management_Web_Api.Controllers
         }
 
         [HttpGet("doctor/{doctorCode}")]
+        // GetDoctorAppointments method
         public async Task<IActionResult> GetDoctorAppointments(int doctorCode)
         {
             var data = await _service.GetDoctorAppointmentsAsync(doctorCode);

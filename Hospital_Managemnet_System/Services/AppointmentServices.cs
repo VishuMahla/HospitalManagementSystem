@@ -9,11 +9,13 @@ namespace Hospital_Management_Web_Api.Services
     {
         private readonly IAppointmentRepository _repo;
 
+        // AppointmentService constructor
         public AppointmentService(IAppointmentRepository repo)
         {
             _repo = repo;
         }
 
+        // BookAppointmentAsync service method
         public async Task BookAppointmentAsync(BookAppointmentDto dto)
         {
             if (dto.DoctorCode <= 0)
@@ -24,6 +26,7 @@ namespace Hospital_Management_Web_Api.Services
             await _repo.BookAppointmentAsync(dto);
         }
 
+        // CancelAppointmentAsync service method
         public async Task CancelAppointmentAsync(int appointmentId)
         {
             if (appointmentId <= 0)
@@ -32,11 +35,13 @@ namespace Hospital_Management_Web_Api.Services
             await _repo.CancelAppointmentAsync(appointmentId);
         }
 
+        // GetUpcomingAppointmentsAsync service method
         public async Task<List<Appointment>> GetUpcomingAppointmentsAsync()
         {
             return await _repo.GetUpcomingAppointmentsAsync();
         }
 
+        // GetDoctorAppointmentsAsync service method
         public async Task<List<Appointment>> GetDoctorAppointmentsAsync(int doctorCode)
         {
             if (doctorCode <= 0)

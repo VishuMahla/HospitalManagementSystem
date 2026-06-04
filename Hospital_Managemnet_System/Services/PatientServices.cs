@@ -12,6 +12,7 @@ namespace Hospital_Management_Web_Api.Services
         public readonly IPatientRepository _patientRepository;
 
 
+        // PatientService constructor
         public PatientService(IPatientRepository patientRepository)
         {
             _patientRepository = patientRepository;
@@ -19,7 +20,7 @@ namespace Hospital_Management_Web_Api.Services
 
 
 
-        // ADD PATIENT
+        // AddPatientAsync service method
         public async Task AddPatientAsync(CreatePatientDto dto)
         {
             if (dto.Phone.Length > 12)
@@ -35,7 +36,7 @@ namespace Hospital_Management_Web_Api.Services
         }
 
 
-        // DEACTIVATE PATIENT
+        // DeactivatePatientAsync service method
         public async Task DeactivatePatientAsync(int patientCode)
         {
             await _patientRepository.DeactivatePatientAsync(patientCode);
@@ -49,7 +50,7 @@ namespace Hospital_Management_Web_Api.Services
         }
 
 
-        // UPDATE PATIENT
+        // UpdatePatientAsync service method
         public async Task UpdatePatientAsync(int PatientCode, UpdatePatientDto dto)
         {
             await _patientRepository.UpdatePatientAsync(PatientCode, dto);
@@ -59,7 +60,7 @@ namespace Hospital_Management_Web_Api.Services
 
 
 
-        // GET PATIENTS BY ID
+        // GetPatientByIdAsync service method
         async Task<Patient> IPatientService.GetPatientByIdAsync(int patientCode)
         {
             var patient = await _patientRepository.GetPatientByIdAsync(patientCode);

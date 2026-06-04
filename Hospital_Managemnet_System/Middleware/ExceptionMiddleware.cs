@@ -6,11 +6,13 @@ namespace Hospital_Management_Web_Api.Middlewares
     {
         private readonly RequestDelegate _next; 
 
+        // ExceptionMiddleware constructor
         public ExceptionMiddleware(RequestDelegate next)
         {
             _next = next;
         }
 
+        // InvokeAsync middleware method for exception handling
         public async Task InvokeAsync(HttpContext context)
         {
             try

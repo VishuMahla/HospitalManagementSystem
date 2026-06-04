@@ -48,9 +48,8 @@ CREATE TABLE Appointments
  REFERENCES Patients(PatientCode),
  CONSTRAINT FK_Appointment_dOCTOR
 
- FOREIGN KEY(DoctorCode)
- REFERENCES Doctors(DoctorCode)
-
+ FOREIGN KEY(DoctorCode)          -- Foreign Key refer to DoctorCode primary key 
+ REFERENCES Doctors(DoctorCode)    
 
 )
 

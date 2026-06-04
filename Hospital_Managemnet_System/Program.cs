@@ -5,6 +5,7 @@ using Hospital_Management_Web_Api.Repositories.Interface;
 using Hospital_Management_Web_Api.Services;
 using Hospital_Management_Web_Api.Services.Interface;
 using Hospital_Managemnet_System.Middleware;
+using Hospital_Managemnet_System.Services;
 
 public static class Program
 {
@@ -37,10 +38,10 @@ public static class Program
         builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
         builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 
-
+       
         builder.Services.AddScoped<IReportRepository, ReportRepository>();
         builder.Services.AddScoped<IReportService, ReportService>();
-
+        builder.Services.AddScoped<EmailServices>();
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.

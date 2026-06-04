@@ -7,8 +7,8 @@ sp_GetUpcomingAppointments
 sp_GetDoctorAppointments
 
 
--- book appointment
-CREATE PROCEDURE sp_BookAppointment
+-- Stored Procedure for Booking an Appointment
+ALTER PROCEDURE sp_BookAppointment
 (
     @PatientCode INT,
     @DoctorCode INT,
@@ -20,13 +20,11 @@ BEGIN
 
         BEGIN TRANSACTION;
 
-        -- Validate appointment date
         IF @AppointmentDate < GETDATE()
         BEGIN
             THROW 50001, 'Appointment date cannot be in the past', 1;
         END
 
-        -- Check doctor availability
         IF NOT EXISTS
         (
             SELECT 1
@@ -38,7 +36,22 @@ BEGIN
             THROW 50002, 'Doctor is unavailable', 1;
         END
 
-        -- Book appointment
+        -- Appointment duration = 1 hour
+        IF EXISTS
+        (
+            SELECT 1
+            FROM Appointments
+            WHERE DoctorCode = @DoctorCode
+              AND AppointmentStatus = 'Scheduled'
+              AND @AppointmentDate < DATEADD(HOUR,1,AppointmentDate)
+              AND DATEADD(HOUR,1,@AppointmentDate) > AppointmentDate
+        )
+        BEGIN
+            THROW 50003,
+                  'Doctor has already an appointment during this time slot',
+                  1;
+        END
+
         INSERT INTO Appointments
         (
             PatientCode,
@@ -59,7 +72,6 @@ BEGIN
         COMMIT;
 
     END TRY
-
     BEGIN CATCH
 
         IF @@TRANCOUNT > 0
@@ -70,8 +82,7 @@ BEGIN
     END CATCH
 END
 
-
--- cancel appointment
+-- -- Stored Procedure for cancel appointment
 CREATE PROCEDURE sp_CancelAppointment
 (
     @AppointmentId INT
@@ -112,7 +123,7 @@ BEGIN
 END
 
 
--- get upcomming appointments
+---- Stored Procedure to get upcomming appointments
 CREATE PROCEDURE sp_GetUpcomingAppointments
 AS
 BEGIN
@@ -138,7 +149,7 @@ BEGIN
     END CATCH
 END
 
--- get doctor appointments
+-- -- Stored Procedure get doctor appointments
 CREATE PROCEDURE sp_GetDoctorAppointments
 (
     @DoctorCode INT

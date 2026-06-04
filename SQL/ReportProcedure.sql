@@ -1,5 +1,7 @@
 -- Appointments 
 
+
+-- get all of the appointments
 CREATE PROCEDURE sp_GetAppointmentReport
 AS
 BEGIN
@@ -22,7 +24,7 @@ GO
 
 
 
-
+-- Stored Procedure to get Total Revenue By Specialization
 CREATE PROCEDURE sp_GetRevenueBySpecialization
 AS
 BEGIN
@@ -41,7 +43,7 @@ GO
 
 
 
-
+-- Stored Procedure to get doctors with more than 2 appointments
 CREATE PROCEDURE sp_GetDoctorsWithMoreThan2Appointments
 AS
 BEGIN
@@ -62,7 +64,7 @@ BEGIN
 END
 GO
 
--- get upcomming appointments
+-- get upcoming appointments
 ALTER PROCEDURE sp_GetUpcomingAppointments
 AS
 BEGIN
@@ -77,6 +79,8 @@ SELECT            AppointmentId,            PatientCode,            DoctorCode, 
         END CATCH
 END
 
+
+-- To get the compeleted Appointments
 CREATE PROCEDURE sp_UpdateCompletedAppointments
 AS
 BEGIN

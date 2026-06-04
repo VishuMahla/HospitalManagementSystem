@@ -10,11 +10,13 @@ namespace Hospital_Management_Web_Api.Repositories
     {
         private readonly DatabaseHelper _dbHelper;
 
+        // ReportRepository constructor
         public ReportRepository(DatabaseHelper dbHelper)
         {
             _dbHelper = dbHelper;
         }
 
+        // GetAppointmentReportAsync repository method
         public async Task<List<AppointmentReportDto>> GetAppointmentReportAsync()
         {
             List<AppointmentReportDto> list = new();
@@ -45,6 +47,7 @@ namespace Hospital_Management_Web_Api.Repositories
             return list;
         }
 
+        // GetRevenueBySpecializationAsync repository method
         public async Task<List<RevenueBySpecializationDto>> GetRevenueBySpecializationAsync()
         {
             List<RevenueBySpecializationDto> list = new();
@@ -71,6 +74,7 @@ namespace Hospital_Management_Web_Api.Repositories
             return list;
         }
 
+        // GetDoctorsWithMoreThan2AppointmentsAsync repository method
         public async Task<List<DoctorAppointmentStatsDto>> GetDoctorsWithMoreThan2AppointmentsAsync()
         {
             List<DoctorAppointmentStatsDto> list = new();

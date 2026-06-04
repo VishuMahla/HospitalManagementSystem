@@ -13,6 +13,7 @@ namespace Hospital_Management_Web_Api.Repositories
 
         private readonly DatabaseHelper _dbHelper;
 
+        // PatientRepository constructor
         public PatientRepository(DatabaseHelper dbHelper)
         {
             _dbHelper = dbHelper;
@@ -21,6 +22,7 @@ namespace Hospital_Management_Web_Api.Repositories
 
 
 
+        // AddPatientAsync repository method
         public async Task AddPatientAsync(CreatePatientDto dto)
         {
             try
@@ -54,7 +56,7 @@ namespace Hospital_Management_Web_Api.Repositories
         }
 
 
-        // DEACTIVATING PATIENT
+        // DeactivatePatientAsync repository method
         public async Task DeactivatePatientAsync(int patientCode)
         {
             try
@@ -81,7 +83,7 @@ namespace Hospital_Management_Web_Api.Repositories
 
 
 
-        // updating the patient details
+        // UpdatePatientAsync repository method
         public async Task UpdatePatientAsync(int patientCode, UpdatePatientDto dto)
         {
             try
@@ -119,7 +121,7 @@ namespace Hospital_Management_Web_Api.Repositories
 
 
         }
-        // GETTING ALL THE PATIENTS
+        // GetAllPatientsAsync repository method
         async Task<List<Patient>> IPatientRepository.GetAllPatientsAsync()
         {
             using (SqlConnection con = _dbHelper.GetConnection())
@@ -148,6 +150,7 @@ namespace Hospital_Management_Web_Api.Repositories
             }
         }
 
+        // GetPatientByIdAsync repository method
         async Task<Patient?> IPatientRepository.GetPatientByIdAsync(int patientCode)
         {
             try

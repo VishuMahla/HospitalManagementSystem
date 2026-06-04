@@ -11,12 +11,14 @@ namespace Hospital_Management_Web_Api.Controllers
     {
         private readonly IReportService _reportService;
 
+        // ReportController constructor
         public ReportController(IReportService reportService)
         {
             _reportService = reportService;
         }
 
         [HttpGet("appointments")]
+        // GetAppointmentReport controller method
         public async Task<IActionResult> GetAppointmentReport()
         {
             List<AppointmentReportDto> reports =
@@ -26,6 +28,7 @@ namespace Hospital_Management_Web_Api.Controllers
         }
 
         [HttpGet("revenue")]
+        // GetRevenueBySpecialization controller method
         public async Task<IActionResult> GetRevenueBySpecialization()
         {
             List<RevenueBySpecializationDto> reports =
@@ -35,6 +38,7 @@ namespace Hospital_Management_Web_Api.Controllers
         }
 
         [HttpGet("busy-doctors")]
+        // GetDoctorsWithMoreThan2Appointments controller method
         public async Task<IActionResult> GetDoctorsWithMoreThan2Appointments()
         {
             List<DoctorAppointmentStatsDto> reports =
